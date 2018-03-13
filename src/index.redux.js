@@ -19,3 +19,11 @@ export function add() {
 export function remove() {
   return {type: REMOVE}
 }
+// 使用redux可以向dispatch传入函数，同步传入的是action对象
+export function addAsync() {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(add());
+    }, 2000);
+  }
+}
