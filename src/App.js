@@ -1,21 +1,16 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+import React from 'react';
+import { add } from './index.redux';
+class App extends React.Component {
+    render() {
+      const store = this.props.store;
+      const num = store.getState()
+      return (
+        <div>
+          <h1>现在{num}</h1>
+          <button onClick={() => store.dispatch(add())}>增加</button>
+          <button>减少</button>
+        </div>
+      )
+    }
 }
-
 export default App;
