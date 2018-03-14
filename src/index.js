@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom';
 
 import App from './App';
 import { counter } from './index.redux';
@@ -46,10 +46,13 @@ ReactDom.render(
             <Link to='/three'>导航三</Link>
           </li>
         </ul>
-        <Route exact path='/' component={App}></Route>
-        <Route exact path='/two' component={Two}></Route>
-        <Route exact path='/three' component={Three}></Route>
-        <Route exact path='/:location' component={Test}></Route>
+        <Switch>
+          <Route exact path='/' component={App}></Route>
+          <Route exact path='/two' component={Two}></Route>
+          <Route exact path='/three' component={Three}></Route>
+          <Route exact path='/:location' component={Test}></Route>
+          <Redirect to='/'></Redirect>
+        </Switch>
       </div>
     </BrowserRouter>
   </Provider>)
