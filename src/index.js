@@ -21,7 +21,16 @@ function Two() {
 function Three() {
   return <h2>Three</h2>
 }
-
+class Test extends React.Component {
+  render () {
+    console.log(this.props);
+    return (
+      <div>
+        测试组件{this.props.match.params.location}
+      </div>
+    )
+  }
+}
 ReactDom.render(
   (<Provider store={store}>
     <BrowserRouter>
@@ -38,8 +47,9 @@ ReactDom.render(
           </li>
         </ul>
         <Route exact path='/' component={App}></Route>
-        <Route path='/two' component={Two}></Route>
-        <Route path='/three' component={Three}></Route>
+        <Route exact path='/two' component={Two}></Route>
+        <Route exact path='/three' component={Three}></Route>
+        <Route exact path='/:location' component={Test}></Route>
       </div>
     </BrowserRouter>
   </Provider>)
