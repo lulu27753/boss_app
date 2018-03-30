@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { add, remove, addAsync } from './index.redux';
+import { add, remove, addAsync } from './counter.redux';
 
 // // 从store里面提取你需要的数据
 // const mapStatetoProp = (state) => {
@@ -15,7 +15,7 @@ import { add, remove, addAsync } from './index.redux';
 // // connect()会把store中的state和action映射到props中
 // App = connect(mapStatetoProp, actionCreators)(App);
 @connect(
-  state => ({num: state}),// 你要state的什么属性放到props里
+  state => ({num: state.counter}),// 你要state的什么属性放到props里
   { add, remove, addAsync }// 你要什么方法，放到props里，会自动dispatch
 )
 
