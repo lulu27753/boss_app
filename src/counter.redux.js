@@ -21,6 +21,7 @@ export function remove() {
 }
 // 使用redux可以向dispatch传入函数，同步传入的是action对象
 export function addAsync() {
+  // dispatch用来通知数据修改
   return dispatch => {
     setTimeout(() => {
       dispatch(add());
