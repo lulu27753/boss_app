@@ -8,10 +8,7 @@ Axios.interceptors.request.use(function (config) {
 })
 // 拦截响应
 Axios.interceptors.response.use(function (config) {
-  setTimeout(() => {
-    Toast.hide()
-  }, 2000);
+ // 只要数据返回则立马关闭掉loading组件的加载
+  Toast.hide()
   return config
 })
-
-// 
