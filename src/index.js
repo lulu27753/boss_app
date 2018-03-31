@@ -5,10 +5,13 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
+
 import Auth from './Auth';
 import Dashboard from './Dashboard';
 // import { counter } from './index.redux';
 import reducer from './reducer';
+import './config'
+import 'antd-mobile/dist/antd-mobile.css';
 
 
 const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : f => f;
