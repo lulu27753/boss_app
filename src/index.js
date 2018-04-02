@@ -24,13 +24,15 @@ const store = createStore(reducer, compose(
 ReactDom.render(
   (<Provider store={store}>
     <BrowserRouter>
-      <Switch>
+      <div>
         <AuthRouter />
-        <Route path='/index' component={Index} />
-        <Route path='/login' component={Login} />
-        <Route path='/register' component={Register} />
-        <Redirect to='/' />
-      </Switch>
+        <Switch>
+          <Route path='/index' component={Index} />
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
+          <Redirect to='/' />
+        </Switch>
+      </div>
     </BrowserRouter>
   </Provider>)
   , document.getElementById('root'))
