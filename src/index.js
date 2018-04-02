@@ -10,6 +10,7 @@ import reducer from './reducer';
 import Login from 'container/login/Login';
 import Register from 'container/register/Register';
 import Index from './views/index/Index';
+import AuthRouter from 'component/authrouter/AuthRouter';
 import './config';
 
 
@@ -24,6 +25,7 @@ ReactDom.render(
   (<Provider store={store}>
     <BrowserRouter>
       <Switch>
+        <AuthRouter />
         <Route path='/index' component={Index} />
         <Route path='/login' component={Login} />
         <Route path='/register' component={Register} />
