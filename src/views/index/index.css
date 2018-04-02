@@ -1,0 +1,192 @@
+/*
+* @Author: lulu27753
+* @Date:   2018-04-01 22:05:01
+* @Last Modified by:   lulu27753
+* @Last Modified time: 2018-04-01 23:20:17
+*/
+
+* {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    line-height: 1.6;
+    font: 14px/1.6 PingFang SC,Helvetica Neue,Helvetica,STHeitiSC-Light,Arial,sans-serif;
+    overflow: hidden;
+    background-color: #d7d7d7
+}
+
+.container,body,html {
+    height: 100vh
+}
+
+.container {
+    position: relative;
+    overflow: hidden
+}
+
+video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.sidebar {
+    background-color: rgba(39,39,39,.92);
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr="#ea272727",EndColorStr="#ea272727");
+    height: 100%;
+    padding: 70px 33px;
+    float: left;
+    margin-right: 24%;
+    -webkit-animation-name: c;
+    animation-name: c;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s
+}
+.sidebar .logo {
+	color: #fff;
+}
+.main {
+    height: 100%;
+    padding: 0 0 0 18%;
+    overflow: hidden;
+    margin-left: 0;
+    background-color: hsla(0,0%,100%,.8);
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr="#ccffffff",EndColorStr="#ccffffff");
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    -webkit-animation-name: a;
+    animation-name: a;
+    -webkit-animation-timing-function: cubic-bezier(0,0,0,1);
+    animation-timing-function: cubic-bezier(0,0,0,1);
+    -webkit-animation-duration: 1.8s;
+    animation-duration: 1.8s
+}
+.login-btn {
+    margin-top: 52px;
+    -webkit-animation-name: b;
+    animation-name: b
+}
+.login-btn a {
+    background-color: #000;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 4px;
+    width: 238px;
+    height: 58px;
+ 	color: #fff;
+}
+.footer {
+    bottom: 120px;
+    margin-top: 160px;
+    font-size: 12px
+}
+.weizhi-logo {
+	display: none;
+    width: 34px;
+    height: 28px;
+    background: url(//res.wx.qq.com/a/wx_fed/weixin_portal/res/static/css/f7788ec608d883c684a83b9483d54046@2x.png);
+    font-size: 0;
+    background-position: -580px -151px;
+    -webkit-background-size: 659px 641px;
+    background-size: 659px 641px
+}
+
+.slogan {
+    margin-top: 270px;
+    width: 528px;
+    height: 152px;
+    background: url(//res.wx.qq.com/a/wx_fed/weixin_portal/res/static/css/e4f20393defe8d791328cb41a6616dcf@1x.png);
+    font-size: 0;
+    margin-left: -1px;
+    background-position: 0 -303px;
+    -webkit-background-size: 660px 513px;
+    background-size: 660px 513px
+}
+
+@media (max-width: 320px) {
+    .main {
+        margin-left:40px;
+        padding-left: 25px
+    }
+}
+
+@media (max-width: 620px) {
+    .weizhi-logo,.tips.mobile {
+        display:block
+    }
+
+    .login-btn.mobile,.footer,.sidebar {
+        display: none
+    }
+
+    .slogan {
+        margin-top: 155px;
+        width: 227px;
+        height: 64px;
+        font-size: 0;
+        background-position: 0 -519px;
+        -webkit-background-size: 659px 641px;
+        background-size: 659px 641px
+    }
+
+    .tips {
+        margin-top: 10px
+    }
+
+    .main {
+        padding-left: 35px;
+        padding-top: 32px;
+        margin-left: 58px
+    }
+
+    video {
+        display: none
+    }
+
+    body {
+        background: url(./bg.jpg) no-repeat 0 0;
+        background-size: cover
+    }
+
+    body .main {
+        float: none
+    }
+}
+
+@media (max-width: 960px) {
+    .sidebar {
+        display:none
+    }
+}
+
+@media (max-width: 1280px) {
+    .main {
+        float:right;
+        padding-right: 80px
+    }
+
+    .sidebar {
+        margin-right: 0
+    }
+}
+
+@media (max-height: 850px) {
+    .footer {
+        position:inherit;
+        margin-top: 160px
+    }
+}
+
+@media (min-height: 960px) {
+    .footer {
+        position:inherit;
+        margin-top: 250px
+    }
+}
