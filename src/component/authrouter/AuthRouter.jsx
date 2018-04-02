@@ -14,13 +14,12 @@ class AuthRouter extends React.Component {
 			// 获取用户信息
 			Axios.get('user/info').then(res => {
 				if (res.status === 200) {
-					console.log(res.data)
+					console.log(res.data)// @TODO SHANCHU
 					// 是否登录
 					if (res.data.code === 0) {
 						// 已登录
 					} else {
 						// 未登录
-
 						this.props.history.push('/login')
 					}
 				// 用户的身份：是客户，还是客服
