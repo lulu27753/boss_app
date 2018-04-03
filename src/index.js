@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 
-import reducer from './reducer';
+import reducer from './reducer.jsx';
 import Login from 'container/login/Login';
 import Register from 'container/register/Register';
 import Index from './views/index/Index';
@@ -30,7 +30,7 @@ ReactDom.render(
           <Route path='/index' component={Index} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
-          <Redirect to='/' />
+          {/* <Redirect to='/' /> */}
         </Switch>
       </div>
     </BrowserRouter>

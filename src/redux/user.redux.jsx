@@ -1,25 +1,27 @@
 import Axios from 'axios';
+import { getRedirectPath } from '../util.jsx';
 
 // 定义常量
-const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
-const ERROR_MSG = 'ERROR_MSG'
+const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+const ERROR_MSG = 'ERROR_MSG';
 
 // 用户的初始状态
 const initState = {
+	redirectTo: '', // 页面跳转
 	isAuth: false, // 是否有被授权访问权限，取决于是否登录成功
 	msg: '', // 当前是否有报错信息
 	user: '', // 用户名
 	pwd: '', // 密码
 	role: '', // 身份
-}
+};
 
 // reducer
 export function user(state = initState, action) {
-	console.log(`action.type: ${action.type}`)
+	console.log(`action.type: ${action.type}`);
 	if (action) {
 		switch (action.type) {
 			case REGISTER_SUCCESS:
-				return { ...state, isAuth: true, msg: '', ...action.payload, };
+				return { ...state, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload, };
 			case ERROR_MSG:
 				return { ...state, isAuth: false, msg: action.msg, };
 			default:
@@ -52,14 +54,7 @@ export function register({user, pwd, repeatpwd, role}) {
 		})
 	}
 }
-// const result = register({
-// 	user: '',
-//     pwd: '',
-//     repeatpwd: '',
-//     role: '',
-// })
 
-// console.log(result);
 // 定义action
 function registerSuccess(dataObj) {
 	return { type: REGISTER_SUCCESS, payload: dataObj }
