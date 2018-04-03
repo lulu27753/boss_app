@@ -39,12 +39,13 @@ module.exports = {
     // 忽略缩进配置
     'indent': 0,
     'no-tabs': 0,
-    'no-unused-vars': [2, {
-      // 允许声明未使用变量
-      "vars": "local",
-      // 参数不检查
-      "args": "none"
-    }],
+    // 'no-unused-vars': [2, {
+    //   // 允许声明未使用变量
+    //   "vars": "local",
+    //   // 参数不检查
+    //   "args": "none"
+    // }],
+     'no-unused-vars': 0,
     //空行最多不能超过100行
     "no-multiple-empty-lines": [0, {
       "max": 100

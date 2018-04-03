@@ -1,15 +1,25 @@
 import React from 'react'
+import {connect} from 'react-redux';
 import { List, InputItem, Radio, WingBlank, WhiteSpace, Button } from 'antd-mobile';
+
 import Logo from 'component/logo/Logo';
+import { register } from '../../redux/user.redux';
+
+import './register.css';
+
+@connect(
+  state => state.user,
+  { register },
+)
 
 export default class Register extends React.Component {
   constructor(props) {
-    super(props)
+      super(props);
       this.state = {
         user: '',
         pwd: '',
         repeatpwd: '',
-        type: 'customer' // 或者'service'
+        role: 'customer' // 或者'service'
       }
       this.handleRegister = this.handleRegister.bind(this);
   }
@@ -20,7 +30,7 @@ export default class Register extends React.Component {
     })
   }
   handleRegister() {
-    console.log(this.state)
+    this.props.register(this.state);
   }
 	render() {
 		const RadioItem = Radio.RadioItem;
@@ -28,15 +38,16 @@ export default class Register extends React.Component {
           <WingBlank>
             <Logo />
             <List>
+              { this.props.msg ? <p className='error-msg'>{this.props.msg}</p> : null }
               <InputItem onChange={value => this.handleChange('user', value)}>用户</InputItem>
               <WhiteSpace />
               <InputItem type='password' onChange={value => this.handleChange('pwd', value)}>密码</InputItem>
               <WhiteSpace />
               <InputItem type='password' onChange={value => this.handleChange('repeatpwd', value)}>确认密码</InputItem>
               <WhiteSpace />
-              <RadioItem checked={this.state.type === 'customer'} onChange={() => this.handleChange('type', 'customer')}>客户</RadioItem>
+              <RadioItem checked={this.state.role === 'customer'} onChange={() => this.handleChange('role', 'customer')}>客户</RadioItem>
               <WhiteSpace />
-              <RadioItem checked={this.state.type === 'service'} onChange={() => this.handleChange('type', 'service')}>客服</RadioItem>
+              <RadioItem checked={this.state.role === 'service'} onChange={() => this.handleChange('role', 'service')}>客服</RadioItem>
             </List>
             <WhiteSpace />
             <Button type='primary' onClick={this.handleRegister}>注册</Button>
@@ -44,3 +55,4 @@ export default class Register extends React.Component {
         );
     }
 }
+
