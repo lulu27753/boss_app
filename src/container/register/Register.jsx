@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import { List, InputItem, Radio, WingBlank, WhiteSpace, Button } from 'antd-mobile';
 
 import Logo from 'component/logo/Logo';
-import { register } from '../../redux/user.redux';
+import { register } from 'reduxes/user.redux';
 
 import './register.css';
 
@@ -21,21 +21,21 @@ export default class Register extends React.Component {
         pwd: '',
         repeatpwd: '',
         role: 'customer' // 或者'service'
-      }
+      };
       this.handleRegister = this.handleRegister.bind(this);
   }
   handleChange(key, value) {
     this.setState({
       // 一定要加中括号，不然就变成字符串了
       [key]: value,
-    })
+    });
   }
   handleRegister() {
     this.props.register(this.state);
   }
 	render() {
 		const RadioItem = Radio.RadioItem;
-    console.log(this.props.redirectTo)
+    console.log(this.props.redirectTo);
         return (
           <WingBlank>
             {this.props.redirectTo ? <Redirect to={this.props.redirectTo} /> : null}
