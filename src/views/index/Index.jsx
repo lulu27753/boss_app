@@ -1,5 +1,5 @@
 import React from 'react'
-import './index.css';
+// import './index.css';
 import BgVideo from './1QzwDFl.mp4';
 
 export default class Index extends React.Component {
