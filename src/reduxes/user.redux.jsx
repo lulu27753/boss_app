@@ -2,9 +2,11 @@ import Axios from 'axios';
 import { getRedirectPath } from '../util.jsx';
 
 // 定义常量
-const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+// const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+// const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+
+const AUTH_SUCCESS = 'AUTH_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOAD_DATA = 'LOAD_DATA';
 
 // 用户的初始状态
@@ -22,10 +24,12 @@ export function user(state = initState, action) {
 	console.log(`action.type: ${action.type}`);
 	if (action) {
 		switch (action.type) {
-			case REGISTER_SUCCESS:
+			case AUTH_SUCCESS:
 				return { ...state, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload, };
-			case LOGIN_SUCCESS:
-				return { ...state, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload, };
+			// case REGISTER_SUCCESS:
+			// 	return { ...state, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload, };
+			// case LOGIN_SUCCESS:
+			// 	return { ...state, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload, };
 			case LOAD_DATA:
 				return { ...state, ...action.payload, };
 			case ERROR_MSG:
@@ -54,14 +58,31 @@ export function register({user, pwd, repeatpwd, role}) {
 		Axios.post('/user/register', {user, pwd, role}).then(res => {
 			// 注册成功
 			if (res.status === 200 && res.data.code === 0) {
-				dispatch(registerSuccess({user, pwd, role}))
+				dispatch(authSuccess({user, pwd, role}))
 			} else {
 				dispatch(errorMsg(res.data.msg))
 			}
 		})
 	}
 }
-
+export function login({user, pwd}) {
+	if (!user || !pwd) {
+		return errorMsg('必须输入账号密码')
+	}
+	// 发送异步消息
+	return dispatch => {
+		console.log(`logindispatch: ${dispatch}`); // @TODO SHANCHU
+		Axios.post('/user/login', {user, pwd}).then(res => {
+			// 数据成功传入后台
+			if (res.status === 200 && res.data.code === 0) {
+				//
+				dispatch(authSuccess(res.data.data))
+			} else {
+				dispatch(errorMsg(res.data.msg))
+			}
+		})
+	}
+}
 export function userinfo() {
 	// 获取用户信息
 	return dispatch => {
@@ -81,18 +102,13 @@ export function userinfo() {
 		});
 	}
 }
-export function login({user, pwd}) {
-	if (!user || !pwd) {
-		return errorMsg('必须输入账号密码')
-	}
-	// 发送异步消息
+export function update(serviceinfo) {
 	return dispatch => {
-		console.log(`logindispatch: ${dispatch}`); // @TODO SHANCHU
-		Axios.post('/user/login', {user, pwd}).then(res => {
+		Axios.post('/user/update', serviceinfo).then(res => {
 			// 数据成功传入后台
 			if (res.status === 200 && res.data.code === 0) {
 				//
-				dispatch(loginSuccess(res.data.data))
+				dispatch(authSuccess(res.data.data))
 			} else {
 				dispatch(errorMsg(res.data.msg))
 			}
@@ -102,17 +118,19 @@ export function login({user, pwd}) {
 export function loadData(userinfo) {
 	return { type: LOAD_DATA, payload: userinfo }
 }
-
-function registerSuccess(dataObj) {
-	return { type: REGISTER_SUCCESS, payload: dataObj }
+// function registerSuccess(dataObj) {
+// 	return { type: REGISTER_SUCCESS, payload: dataObj }
+// }
+// function loginSuccess(data) {
+// 	return { type: LOGIN_SUCCESS, payload: data }
+// }
+function authSuccess(data) {
+	return { type: AUTH_SUCCESS, payload: data }
 }
 function errorMsg(msg) {
 	return { type: ERROR_MSG, msg: msg }
 	// 注意msg要写在最前面
 	// return { msg, type: ERROR_MSG }
-}
-function loginSuccess(data) {
-	return { type: LOGIN_SUCCESS, payload: data }
 }
 
 

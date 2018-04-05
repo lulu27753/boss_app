@@ -1,7 +1,15 @@
 import React from 'react';
 import { NavBar, Icon, InputItem, TextareaItem, Button, WhiteSpace } from 'antd-mobile';
-import AvatarSelector from 'component/avatarselector/AvatarSelector';
+import { connect } from 'react-redux';
 
+
+import AvatarSelector from 'component/avatarselector/AvatarSelector';
+import { update } from 'reduxes/user.redux';
+
+@connect(
+	state => state.user,
+	{ update }
+	)
 export default class ServiceInfo extends React.Component {
 	constructor(props) {
 		super(props)
@@ -50,7 +58,7 @@ export default class ServiceInfo extends React.Component {
       autoHeight
       title='职位要求'
      />
-    <Button type='primary'>保存</Button>
+    <Button type='primary' onClick={() => { this.props.update(this.state) }}>保存</Button>
 
   </div>
 		);

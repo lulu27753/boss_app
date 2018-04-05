@@ -2,7 +2,7 @@
 * @Author: lulu27753
 * @Date:   2018-04-02 17:18:56
 * @Last Modified by:   lulu27753
-* @Last Modified time: 2018-04-05 17:42:46
+* @Last Modified time: 2018-04-05 23:00:41
 */
 const express = require('express');
 const utils = require('./utils.js');
@@ -84,5 +84,23 @@ Router.get('/info', function (req, res) {
 		}
 	});
 });
+// 点击保存按钮后跳转页面
+Router.post('/update', function (req, res) {
+	// 防止用户关闭了一个窗口，另一个窗口依旧在发送请求，因此依旧需要对cookie进行校验
+	const {userid} = req.cookies;
+	const reqData = req.body;
+	if (!userid) {
+		// 没有cookie
+		return json.dumps({code: 1})
+	}
+	User.findByIdAndUpdate(userid, reqData, function (err, doc) {
+		// 查找并更新
+		const data = Object.assign({}, {
+			user: doc.user,
+			type: doc.type
+		}, reqData)
+		return res.json({code: 0, data})
+	})
+})
 
 module.exports = Router;
