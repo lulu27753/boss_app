@@ -5,6 +5,7 @@ import { getRedirectPath } from '../util.jsx';
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const LOAD_DATA = 'LOAD_DATA';
 
 // 用户的初始状态
 const initState = {
@@ -25,6 +26,8 @@ export function user(state = initState, action) {
 				return { ...state, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload, };
 			case LOGIN_SUCCESS:
 				return { ...state, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload, };
+			case LOAD_DATA:
+				return { ...state, ...action.payload, };
 			case ERROR_MSG:
 				return { ...state, isAuth: false, msg: action.msg, };
 			default:
@@ -35,6 +38,7 @@ export function user(state = initState, action) {
 	}
 }
 
+// 定义action
 export function register({user, pwd, repeatpwd, role}) {
 	console.log('register'); // @TODO SHANCHU
 	// 上面的消息发送是同步的
@@ -58,6 +62,25 @@ export function register({user, pwd, repeatpwd, role}) {
 	}
 }
 
+export function userinfo() {
+	// 获取用户信息
+	return dispatch => {
+		// 获取用户信息
+		Axios.get('user/info').then(res => {
+			if (res.status === 200) {
+				console.log(res.data)// @TODO SHANCHU
+				// 是否登录
+				if (res.data.code === 0) {
+					// 已登录
+				} else {
+					// 未登录
+					this.props.loadData(res.data.data);
+					this.props.history.push('/login');
+				}
+			}
+		});
+	}
+}
 export function login({user, pwd}) {
 	if (!user || !pwd) {
 		return errorMsg('必须输入账号密码')
@@ -76,8 +99,10 @@ export function login({user, pwd}) {
 		})
 	}
 }
+export function loadData(userinfo) {
+	return { type: LOAD_DATA, payload: userinfo }
+}
 
-// 定义action
 function registerSuccess(dataObj) {
 	return { type: REGISTER_SUCCESS, payload: dataObj }
 }

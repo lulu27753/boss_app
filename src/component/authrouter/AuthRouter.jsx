@@ -1,7 +1,14 @@
 import React from 'react';
 import Axios from 'axios';
 import { withRouter } from 'react-router';
+// 将非路由组件传入到withRouter高阶组件以获得{ match, location, history }等对象属性
+import { connect } from 'react-redux';
+import { loadData } from 'reduxes/user.redux';
 
+@connect(
+	null,
+	{ loadData }
+)
 // 用户 = 客户 + 客服
 class AuthRouter extends React.Component {
 	componentDidMount() {
@@ -18,6 +25,7 @@ class AuthRouter extends React.Component {
 					// 是否登录
 					if (res.data.code === 0) {
 						// 已登录
+						this.props.loadData(res.data.data);
 					} else {
 						// 未登录
 						this.props.history.push('/login')
@@ -33,4 +41,4 @@ class AuthRouter extends React.Component {
 	}
 }
 
-export default withRouter(AuthRouter)
+export default withRouter(AuthRouter);
