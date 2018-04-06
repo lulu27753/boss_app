@@ -8,6 +8,7 @@ import { getRedirectPath } from '../util.jsx';
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 const LOAD_DATA = 'LOAD_DATA';
+const LOGOUT = 'LOGOUT';
 
 // 用户的初始状态
 const initState = {
@@ -33,6 +34,8 @@ export function user(state = initState, action) {
 			// 	return { ...state, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload, };
 			case LOAD_DATA:
 				return { ...state, ...action.payload, };
+			case LOGOUT:
+				return { ...initState, redirectTo: '/login', };
 			case ERROR_MSG:
 				return { ...state, isAuth: false, msg: action.msg, };
 			default:
@@ -125,6 +128,10 @@ export function loadData(userinfo) {
 // function loginSuccess(data) {
 // 	return { type: LOGIN_SUCCESS, payload: data }
 // }
+
+export function logoutSubmit() {
+	return { type: LOGOUT }
+}
 function authSuccess(obj) {
 	// 过滤掉pwd，只传入其他的data
 	const { pwd, ...data } = obj;

@@ -2,9 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Result, List, Button, WhiteSpace, Modal } from 'antd-mobile';
 import BrowserCookie from 'browser-cookies';
+import { logoutSubmit } from 'reduxes/user.redux';
+import { Redirect } from 'react-router-dom';
 
 @connect(
-	state => state.user
+	state => state.user,
+	{ logoutSubmit }
 	)
 export default class Me extends React.Component {
 	constructor(props) {
@@ -17,7 +20,8 @@ export default class Me extends React.Component {
 				{ text: '确定',
 onPress: () => {
 					BrowserCookie.erase('userid');
-					window.location.href = window.location.href;
+					// window.location.href = window.location.href;
+					this.props.logoutSubmit()
 				} },
 			])
 		// console.log(1);
@@ -27,6 +31,7 @@ onPress: () => {
 		console.log(this.props);
 		return props.user ? (
   <div>
+
     <Result
       img={<img src={require(`../usercard/avatars/${this.props.avatar}.png`)} style={{width: 50}} alt='' />}
       title={props.user}
@@ -42,6 +47,6 @@ onPress: () => {
     <WhiteSpace />
     <Button type='primary' onClick={this.handleLogout}>退出登录</Button>
   </div>
-		) : null
+		) : <Redirect to={props.redirectTo} />
 	}
 }
