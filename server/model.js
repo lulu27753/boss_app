@@ -2,7 +2,7 @@
 * @Author: lulu27753
 * @Date:   2018-04-02 17:33:38
 * @Last Modified by:   lulu27753
-* @Last Modified time: 2018-04-04 16:42:46
+* @Last Modified time: 2018-04-06 15:13:17
 */
 
 // 数据库模型
@@ -21,7 +21,7 @@ const models = {
 		'user': {type: String, require: true}, // 用户名
 		'pwd': {type: String, require: true}, // 密码
 		'role': {type: String, require: true}, // 角色
-		'avator': {type: String}, // 头像
+		'avatar': {type: String}, // 头像
 		'desc': {type: String}, // 简介
 		'state': {type: String}, // 状态：在线online | 挂起offline | 小休rest
  	},

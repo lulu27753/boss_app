@@ -30,8 +30,8 @@ export default class CustomerInfo extends React.Component {
 		});
 	}
 	render() {
-		const path = this.props.location.pathname
-		const redirect = this.props.redirectTo
+		const path = this.props.location.pathname;
+		const redirect = this.props.redirectTo;
 		return (
   <div>
     {redirect && redirect !== path ? <Redirect to={this.props.redirectTo} /> : null}

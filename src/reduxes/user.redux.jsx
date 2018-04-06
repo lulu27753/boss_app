@@ -25,7 +25,6 @@ export function user(state = initState, action) {
 	if (action) {
 		switch (action.type) {
 			case AUTH_SUCCESS:
-				console.log(action.payload);
 				return { ...state, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload, };
 			// case REGISTER_SUCCESS:
 			// 	return { ...state, isAuth: true, msg: '', redirectTo: getRedirectPath(action.payload), ...action.payload, };

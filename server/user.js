@@ -2,7 +2,7 @@
 * @Author: lulu27753
 * @Date:   2018-04-02 17:18:56
 * @Last Modified by:   lulu27753
-* @Last Modified time: 2018-04-06 09:36:29
+* @Last Modified time: 2018-04-06 15:46:54
 */
 const express = require('express');
 const utils = require('./utils.js');
@@ -16,9 +16,10 @@ const User = models.getModel('user');
 const _filter = { 'pwd': 0, '__v': 0 }; // 用于过滤掉一些不发送到前端的字段
 
 Router.get('/list', function (req, res) {
-	// 查询用户列表
-	User.find({}, function (err, doc) {
-		return res.json(doc);
+	const { role } = req.query;
+	// 根据url ? 传递的参数查询用户列表
+	User.find({role}, function (err, doc) {
+		return res.json({code: 0, data: doc});
 	});
 });
 // 点击登录按钮后跳转页面
@@ -37,7 +38,7 @@ Router.post('/login', function (req, res) {
 // 点击注册按钮后跳转页面
 Router.post('/register', function (req, res) {
 	// 用户注册信息提交
-	console.log(req.body); // @TODO SHANCHU
+	// console.log(req.body); // @TODO SHANCHU
 	const { user, pwd, role } = req.body;
 	// 保证每个用户只注册一次
 	User.findOne({user}, function (err, doc) {
@@ -80,6 +81,7 @@ Router.get('/info', function (req, res) {
 			return res.json({code: 1, msg: '后端出错了！'});
 		}
 		if (doc) {
+			// console.log(doc);
 			return res.json({code: 0, data: doc});
 		}
 	});
