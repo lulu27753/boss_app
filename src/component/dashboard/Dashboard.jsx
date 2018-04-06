@@ -5,13 +5,12 @@ import { NavBar } from 'antd-mobile';
 
 import NavLinkBar from 'component/navlinkbar/NavLinkBar';
 import Customer from 'component/customer/Customer';
+import Service from 'component/service/Service';
 
 import './dashboard.css';
 
 
-function Service(argument) {
-	return <div>Service</div>
-}
+
 function Msg(argument) {
 	return <div>Msg</div>
 }

@@ -2,7 +2,7 @@
 * @Author: lulu27753
 * @Date:   2018-04-02 17:33:38
 * @Last Modified by:   lulu27753
-* @Last Modified time: 2018-04-06 15:13:17
+* @Last Modified time: 2018-04-06 18:17:03
 */
 
 // 数据库模型
@@ -24,6 +24,7 @@ const models = {
 		'avatar': {type: String}, // 头像
 		'desc': {type: String}, // 简介
 		'state': {type: String}, // 状态：在线online | 挂起offline | 小休rest
+		'money': {type: String}, // 薪资
  	},
 	chat: {
 
