@@ -1,8 +1,14 @@
 import React from 'react';
 import Axios from 'axios';
+import { connect } from 'react-redux';
 import { Card, WhiteSpace, WingBlank } from 'antd-mobile';
 
+import { getUserList } from 'reduxes/chatuser.redux';
 
+@connect(
+	state => state.chatuser,
+	{ getUserList }
+	)
 export default class Customer extends React.Component {
 	constructor(props) {
 		super(props);
@@ -11,18 +17,13 @@ export default class Customer extends React.Component {
 		};
 	}
 	componentDidMount() {
-		Axios.get('user/list?role=customer').then(res => {
-			if (res.data.code === 0) {
-				this.setState({data: res.data.data});
-			}
-		})
+		this.props.getUserList('customer');
 	}
 	render() {
-		console.log(this.state)
 		return (
   <WingBlank>
     {
-		    	this.state.data.map(v => (
+		    	this.props.userList.map(v => (
 		  	  	v.avatar
 		  	  		? (
   <Card key={v._id}>
