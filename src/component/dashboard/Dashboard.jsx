@@ -1,9 +1,11 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { NavBar } from 'antd-mobile';
 
 import NavLinkBar from 'component/navlinkbar/NavLinkBar';
+
+import './dashboard.css';
 
 function Customer(argument) {
 	return <div>Customer</div>
@@ -52,8 +54,15 @@ export default class Dashboard extends React.Component {
 		return (
   <div>
     <NavBar mode='dark'>{navList.find(v => v.path === pathname).title}</NavBar>
-    <Route path='/service' component={Service} />
-    <Route path='/customer' component={Customer} />
+    <div style={{marginTop: 45}}>
+      <Switch>
+        {
+        	navList.map(v => (
+          <Route key={v.path} path={v.path} component={v.component} />
+        		))
+    		}
+      </Switch>
+    </div>
     <NavLinkBar data={navList} />
   </div>
 

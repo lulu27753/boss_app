@@ -1,0 +1,11 @@
+/*
+* @Author: lulu27753
+* @Date:   2018-04-06 13:13:57
+* @Last Modified by:   lulu27753
+* @Last Modified time: 2018-04-06 13:14:29
+*/
+.fixd-header.am-navbar{
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
