@@ -11,6 +11,24 @@ import { login } from 'reduxes/user.redux';
   state => state.user,
   { login },
 )
+class Hello extends React.Component {
+  render() {
+    return (
+      <div>Hello</div>
+    );
+  }
+}
+function WrapperHello(Comp) {
+  class WrapComp extends React.Component {
+    render() {
+      return (
+        <div><p>这是HOC高阶组件特有的元素</p><Comp {...this.props} /></div>
+      );
+    }
+  }
+  return WrapComp;
+}
+const HelloHOC = WrapperHello(Hello)
 export default class Login extends React.Component {
 	constructor(props) {
 		super(props);
@@ -36,6 +54,8 @@ export default class Login extends React.Component {
   render() {
       return (
         <div>
+          <Hello />
+          <HelloHOC />
           {(this.props.redirectTo && this.props.redirectTo !== '/login') ? <Redirect to={this.props.redirectTo} /> : null}
           <Logo />
           { this.props.msg ? <p className='error-msg'>{this.props.msg}</p> : null }
