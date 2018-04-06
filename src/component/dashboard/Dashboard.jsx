@@ -6,6 +6,7 @@ import { NavBar } from 'antd-mobile';
 import NavLinkBar from 'component/navlinkbar/NavLinkBar';
 import Customer from 'component/customer/Customer';
 import Service from 'component/service/Service';
+import User from 'component/user/User';
 
 import './dashboard.css';
 
@@ -14,9 +15,7 @@ import './dashboard.css';
 function Msg(argument) {
 	return <div>Msg</div>
 }
-function Me(argument) {
-	return <div>Me</div>
-}
+
 @connect(
 	state => state
 	)
@@ -50,7 +49,7 @@ export default class Dashboard extends React.Component {
 			text: '我',
 			icon: 'user',
 			title: '个人中心',
-			component: Me,
+			component: User,
 		}]
 		return (
   <div>

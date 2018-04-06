@@ -17,6 +17,7 @@ const initState = {
 	user: '', // 用户名
 	pwd: '', // 密码
 	role: '', // 身份
+	avatar: 'boy'
 };
 
 // reducer
