@@ -2,7 +2,7 @@
 * @Author: lulu27753
 * @Date:   2018-04-02 17:18:56
 * @Last Modified by:   lulu27753
-* @Last Modified time: 2018-04-05 23:00:41
+* @Last Modified time: 2018-04-06 09:36:29
 */
 const express = require('express');
 const utils = require('./utils.js');
@@ -97,7 +97,7 @@ Router.post('/update', function (req, res) {
 		// 查找并更新
 		const data = Object.assign({}, {
 			user: doc.user,
-			type: doc.type
+			role: doc.role
 		}, reqData)
 		return res.json({code: 0, data})
 	})

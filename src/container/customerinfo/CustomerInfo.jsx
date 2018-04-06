@@ -11,7 +11,7 @@ import { update } from 'reduxes/user.redux';
 	state => state.user,
 	{ update }
 	)
-export default class ServiceInfo extends React.Component {
+export default class CustomerInfo extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -43,24 +43,24 @@ export default class ServiceInfo extends React.Component {
         <Icon key='1' type='ellipsis' />
 		  			]}
 		  >
-			  客服信息完善
+			  客户信息完善
     </NavBar>
     <AvatarSelector selectAvatar={this.selectAvatar} />
     <WhiteSpace />
     <InputItem onChange={value => this.handleChange('title', value)}>
-		    招聘职位
+		    求职职位
     </InputItem>
     <InputItem onChange={value => this.handleChange('company', value)}>
-		    公司名称
+		    工作年限
     </InputItem>
     <InputItem onChange={value => this.handleChange('money', value)}>
-		    职位薪资
+		    期望薪资
     </InputItem>
     <TextareaItem
       onChange={value => this.handleChange('desc', value)}
       rows={3}
       autoHeight
-      title='职位要求'
+      title='个人简介'
      />
     <Button type='primary' onClick={() => { this.props.update(this.state) }}>保存</Button>
 

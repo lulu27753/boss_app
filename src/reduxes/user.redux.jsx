@@ -124,7 +124,10 @@ export function loadData(userinfo) {
 // function loginSuccess(data) {
 // 	return { type: LOGIN_SUCCESS, payload: data }
 // }
-function authSuccess(data) {
+function authSuccess(obj) {
+	// 过滤掉pwd，只传入其他的data
+	const { pwd, ...data } = obj;
+	console.log(data)
 	return { type: AUTH_SUCCESS, payload: data }
 }
 function errorMsg(msg) {

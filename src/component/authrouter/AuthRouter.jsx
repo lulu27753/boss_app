@@ -25,6 +25,7 @@ class AuthRouter extends React.Component {
 					// 是否登录
 					if (res.data.code === 0) {
 						// 已登录
+						console.log(res.data.data)
 						this.props.loadData(res.data.data);
 					} else {
 						// 未登录

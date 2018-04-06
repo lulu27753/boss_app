@@ -12,6 +12,7 @@ import Index from './views/index/Index';
 import Login from 'container/login/Login';
 import Register from 'container/register/Register';
 import ServiceInfo from 'container/serviceinfo/ServiceInfo';
+import CustomerInfo from 'container/customerinfo/CustomerInfo';
 import './config';
 
 
@@ -32,6 +33,7 @@ ReactDom.render(
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
           <Route path='/serviceinfo' component={ServiceInfo} />
+          <Route path='/customerinfo' component={CustomerInfo} />
           {/* <Redirect to='/' /> */}
         </Switch>
       </div>
