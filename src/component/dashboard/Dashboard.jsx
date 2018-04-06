@@ -7,14 +7,9 @@ import NavLinkBar from 'component/navlinkbar/NavLinkBar';
 import Customer from 'component/customer/Customer';
 import Service from 'component/service/Service';
 import User from 'component/user/User';
+import Msg from 'component/msg/msg';
 
 import './dashboard.css';
-
-
-
-function Msg(argument) {
-	return <div>Msg</div>
-}
 
 @connect(
 	state => state

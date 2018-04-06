@@ -2,10 +2,12 @@
 * @Author: lulu27753
 * @Date:   2018-04-06 11:46:48
 * @Last Modified by:   lulu27753
-* @Last Modified time: 2018-04-06 11:46:57
+* @Last Modified time: 2018-04-06 21:55:42
 */
 .am-tab-bar{
 	position: fixed;
 	bottom: 0;
 	width: 100%;
+	/*蚂蚁对其设置了高度100%，导致其会覆盖按钮的内容，导致点击不到退出按钮*/
+	z-index: -1;
 }
