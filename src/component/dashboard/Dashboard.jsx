@@ -46,9 +46,10 @@ export default class Dashboard extends React.Component {
 			title: '个人中心',
 			component: User,
 		}]
+		const nav = navList.find(v => v.path === pathname);
 		return (
   <div>
-    <NavBar mode='dark'>{navList.find(v => v.path === pathname).title}</NavBar>
+    <NavBar mode='dark'>{nav ? nav.title : null}</NavBar>
     <div style={{marginTop: 45}}>
       <Switch>
         {

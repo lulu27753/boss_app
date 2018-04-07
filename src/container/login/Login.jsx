@@ -26,6 +26,8 @@ export default class Login extends React.Component {
   handleLogin() {
     // this.props.login(this.state);
     this.props.login(this.props.state);
+    console.log(`Login: ${this.props.state}`);
+    console.log(this.props.redirectTo);
   }
 	handleRegister() {
 		this.props.history.push('/register');

@@ -6,5 +6,6 @@ export function getRedirectPath({role, avatar}) {
 	if (!avatar) {
 		url = `/${role}info`;
 	}
+	console.log(url);
 	return url;
 }

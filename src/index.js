@@ -13,6 +13,7 @@ import Login from 'container/login/Login';
 import Register from 'container/register/Register';
 import ServiceInfo from 'container/serviceinfo/ServiceInfo';
 import CustomerInfo from 'container/customerinfo/CustomerInfo';
+import Chat from 'component/chat/Chat';
 
 import reducer from './reducer.jsx';
 import './config';
@@ -36,7 +37,8 @@ ReactDom.render(
           <Route path='/register' component={Register} />
           <Route path='/serviceinfo' component={ServiceInfo} />
           <Route path='/customerinfo' component={CustomerInfo} />
-          <Route component={Dashboard} />
+          <Route path='/chat/:user' component={Chat} />
+          { <Route component={Dashboard} /> }
           {/* <Redirect to='/' /> */}
         </Switch>
       </div>
