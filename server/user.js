@@ -2,7 +2,7 @@
 * @Author: lulu27753
 * @Date:   2018-04-02 17:18:56
 * @Last Modified by:   lulu27753
-* @Last Modified time: 2018-04-06 15:46:54
+* @Last Modified time: 2018-04-07 17:17:17
 */
 const express = require('express');
 const utils = require('./utils.js');
@@ -12,9 +12,13 @@ const models = require('./model.js');
 const Router = express.Router();
 
 const User = models.getModel('user');
+const Chat = models.getModel('chat');
 
 const _filter = { 'pwd': 0, '__v': 0 }; // 用于过滤掉一些不发送到前端的字段
 
+Chat.remove({}, function (e, d) {
+	// body...
+})
 Router.get('/list', function (req, res) {
 	const { role } = req.query;
 	// 根据url ? 传递的参数查询用户列表
@@ -102,6 +106,22 @@ Router.post('/update', function (req, res) {
 			role: doc.role
 		}, reqData)
 		return res.json({code: 0, data})
+	})
+})
+// chat.jsx cdm 阶段获取聊天信息
+Router.get('/getmsglist', function (req, res) {
+	// 只需要当前用户的聊天信息，先从cookie把用户获取出来
+	const {user} = req.cookies;
+	// 由于发出和收到方的信息都属于我的信息，因此需要查询两遍
+	Chat.find({'$or': [{from: user}, {to: user}]}, function (err, doc) {
+		// 将查询出来的信息做进一步的加工
+		if (err) {
+			return res.json({code: 1, msg: '后端出错了！'});
+		}
+		if (doc) {
+			// console.log(doc);
+			return res.json({code: 0, msgs: doc});
+		}
 	})
 })
 

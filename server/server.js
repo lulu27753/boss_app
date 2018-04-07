@@ -2,6 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+const models = require('./model.js');
+const User = models.getModel('user');
+const Chat = models.getModel('chat');
+
 // 新建app
 const app = express();
 
@@ -16,9 +20,14 @@ io.on('connection', function (socket) {
 	// 当前端发起联调成功后，后台会显示该条信息
 	console.log('user login success');
 	socket.on('sendmsg', function (data) {
-		console.log(data);
-		// 后台接收到前台发送的信息后广播到全局
-		io.emit('receiveMsg', data)
+		const { from, to, msgs } = data;
+		const chatid = [from, to].sort().join('_');
+		Chat.create({chatid, from, to, content: msgs}, function (err, doc) {
+			io.emit('receiveMsg', Object.assign({}, doc._doc))
+		})
+		// console.log(data);
+		// // 后台接收到前台发送的信息后广播到全局
+		// io.emit('receiveMsg', data)
 	})
 })
 

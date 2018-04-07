@@ -2,7 +2,7 @@
 * @Author: lulu27753
 * @Date:   2018-04-02 17:33:38
 * @Last Modified by:   lulu27753
-* @Last Modified time: 2018-04-07 11:25:15
+* @Last Modified time: 2018-04-07 11:30:59
 */
 
 // 数据库模型
@@ -30,7 +30,7 @@ const models = {
 		'chatid': {type: String, require: true}, // 每个聊天唯一的标识，将from和to两个字段进行拼接
 		'from': {type: String, require: true}, // 谁发出的消息
 		'to': {type: String, require: true}, // 发送给谁的消息
-		'read': {type: Boolean, default: false} // 信息是否已经读过了,只对to这个字段有效
+		'read': {type: Boolean, default: false}, // 信息是否已经读过了,只对to这个字段有效
 		'content': {type: String, require: true, default: ''}, // 发送的消息
 		'create_time': {type: Number, default: new Date().getTime()}, // 信息发送的时间，方便排序
 
