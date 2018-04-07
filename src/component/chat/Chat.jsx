@@ -3,14 +3,14 @@ import React from 'react';
 import { List, InputItem, NavBar } from 'antd-mobile';
 import './chat.css';
 import { connect } from 'react-redux';
-import { getMsgList, sendMsg, receiveMsg } from 'reduxes/chat.redux';
+import { sendMsg } from 'reduxes/chat.redux';
 
 // // 发起IO连接
 // // 前端端口在3000，后端端口在9093，跨域，因此需要手动连接
 // const socket = io('ws://localhost:9093');
 @connect(
 	state => state,
-	{ getMsgList, sendMsg, receiveMsg}
+	{ sendMsg }
 	)
 export default class Chat extends React.Component {
 	constructor(props) {
@@ -28,8 +28,8 @@ export default class Chat extends React.Component {
 		// 		msgs: [...this.state.msgs, data.text]
 		// 	});
 		// })
-		this.props.getMsgList();
-		this.props.receiveMsg();
+		// this.props.getMsgList();
+		// this.props.receiveMsg();
 	}
 	handleSubmit() {
 		// socket.emit('sendmsg', {text: this.state.text})

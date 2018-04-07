@@ -2,7 +2,7 @@
 * @Author: lulu27753
 * @Date:   2018-04-02 17:18:56
 * @Last Modified by:   lulu27753
-* @Last Modified time: 2018-04-07 17:17:17
+* @Last Modified time: 2018-04-07 17:48:43
 */
 const express = require('express');
 const utils = require('./utils.js');
@@ -16,8 +16,16 @@ const Chat = models.getModel('chat');
 
 const _filter = { 'pwd': 0, '__v': 0 }; // 用于过滤掉一些不发送到前端的字段
 
-Chat.remove({}, function (e, d) {
-	// body...
+// Chat.remove({}, function (e, d) {
+// 	// body...
+// })
+// User.remove({}, function (e, d) {
+// 	// body...
+// })
+Router.get('/', function (req, res) {
+	User.find({}, function (err, doc) {
+		return res.json({code: 0, data: doc});
+	});
 })
 Router.get('/list', function (req, res) {
 	const { role } = req.query;

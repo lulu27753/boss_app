@@ -8,13 +8,20 @@ import Customer from 'component/customer/Customer';
 import Service from 'component/service/Service';
 import User from 'component/user/User';
 import Msg from 'component/msg/msg';
+import { getMsgList, receiveMsg } from 'reduxes/chat.redux';
 
 import './dashboard.css';
 
+
 @connect(
-	state => state
+	state => state,
+	{ getMsgList, receiveMsg}
 	)
 export default class Dashboard extends React.Component {
+	componentDidMount() {
+		this.props.getMsgList();
+		this.props.receiveMsg();
+	}
 	render() {
 		const user = this.props.user;
 		const { pathname } = this.props.location;
