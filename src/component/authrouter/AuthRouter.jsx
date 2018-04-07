@@ -13,8 +13,9 @@ import { loadData } from 'reduxes/user.redux';
 class AuthRouter extends React.Component {
 	componentDidMount() {
 		// 现在的URL地址，login页面则是不需要跳转的
-		const publicList = ['/login', '/register'];
+		const publicList = ['/login', '/register', '/chat/kefu'];
 		const pathName = this.props.location.pathname;
+		console.log(pathName);
 		if (publicList.indexOf(pathName) > -1) {
 			return null;
 		} else {

@@ -15,8 +15,12 @@ const io = require('socket.io')(server);
 io.on('connection', function (socket) {
 	// 当前端发起联调成功后，后台会显示该条信息
 	console.log('user login success');
+	socket.on('sendmsg', function (data) {
+		console.log(data);
+		// 后台接收到前台发送的信息后广播到全局
+		io.emit('receiveMsg', data)
+	})
 })
-
 
 
 const userRouter = require('./user');

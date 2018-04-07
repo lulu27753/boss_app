@@ -1,0 +1,12 @@
+/*
+* @Author: lulu27753
+* @Date:   2018-04-07 09:50:09
+* @Last Modified by:   lulu27753
+* @Last Modified time: 2018-04-07 09:53:51
+*/
+.stick-footer{
+	z-index:10;
+	position: absolute;
+	bottom: 0;
+	width:100%;
+}
